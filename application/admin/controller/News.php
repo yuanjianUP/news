@@ -29,7 +29,7 @@ class News extends Base
         if(!empty($data['title'])){
             $whereDate['title'] = ['like','%'.$data['title'].'%'];
         }
-        $news = model('news')->getNews($whereDate);
+        $news = model('news')->getNews($whereDate,$this -> from,$this -> size);
 //        halt($news);exit;
         $this ->getPageAndSize($data);
         $total = model('news')->getNewsTotal();

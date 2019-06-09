@@ -15,6 +15,7 @@ class Base extends Controller
 {
     public $page;//当前页
     public $size;//一页显示多少条
+    public $from=0;
     public function _initialize()
     {
         $isLogin = $this -> isLogin();
@@ -32,5 +33,6 @@ class Base extends Controller
     public function getPageAndSize($data){
         $this -> page = !empty($data['page'])?$data['page']:1;
         $this -> size = !empty($data['size'])?$data['size']:config('paginate.list_rows');
+        $this -> from = ($this -> page-1) * $this -> size;
     }
 }

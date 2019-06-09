@@ -13,12 +13,22 @@ use think\Model;
 
 class News extends Model
 {
-    public function getNews($data=[]){
+    /**获取数据
+     * @param array $data
+     * @param $from
+     * @param $size
+     * @return false|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getNews($data=[],$from,$size){
         $data['status'] = ['eq',1];
         $order = ['id'=>'desc'];
         $result = $this->where($data)
             ->order($order)
-            ->paginate();
+            ->limit($from,$size)
+            ->select();
         return $result;
     }
     public function add($data){
