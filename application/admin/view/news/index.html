@@ -72,7 +72,7 @@
 <script type="text/javascript" src="__STATIC__/hadmin/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
     $(function() {
-        var url = "{:url('news/index')}"+'?'
+        var url = "{:url('news/index')}"+"?{$query}";
         laypage({
             cont: 'laypage', //容器。值支持id名、原生dom对象，jquery对象,
             pages: '{$pageTotal}', //总页数
@@ -81,7 +81,7 @@
             jump: function (e, first) { //触发分页后的回调
                 if (!first) { //一定要加此判断，否则初始时会无限刷新
                     //alert(url+'?page='+e.curr);
-                    location.href = url+'page='+e.curr;
+                    location.href = url+'&page='+e.curr;
                 }
             }
         });

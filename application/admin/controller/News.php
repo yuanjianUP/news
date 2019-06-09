@@ -15,6 +15,7 @@ class News extends Base
 {
     public function index(){
         $data = input();
+        $query = http_build_query($data);
 //        halt($data);
         $whereDate = [];
         if(!empty($data['start_time']) && !empty($data['end_time']) && $data['start_time'] > $data['end_time']){
@@ -46,6 +47,7 @@ class News extends Base
                 'end_time' => empty($data['end_time']) ? '' : $data['end_time'],
                 'title' => empty($data['title']) ? '' : $data['title'],
                 'catid' => empty($data['catid']) ? '' : $data['catid'],
+                'query' => $query,
             ]);
     }
     public function add(){
