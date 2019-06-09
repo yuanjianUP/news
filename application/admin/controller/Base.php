@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 
+use phpDocumentor\Reflection\DocBlock\Tags\Example;
 use think\Controller;
 
 class Base extends Controller
@@ -34,5 +35,17 @@ class Base extends Controller
         $this -> page = !empty($data['page'])?$data['page']:1;
         $this -> size = !empty($data['size'])?$data['size']:config('paginate.list_rows');
         $this -> from = ($this -> page-1) * $this -> size;
+    }
+
+    public function delete($id=0){
+        if(!intval($id)){
+            return $this -> result('',0,'ID不合法');
+        }
+        $model = $this->model ? $this->model : request()->controller();
+        try{
+            $res = model($model)->save(['status'=>-1],['id'=>$id]);
+        }catch (\Exception $e){
+           return $this -> result('',0,$e->getMessage());
+        }
     }
 }
