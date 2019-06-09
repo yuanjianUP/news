@@ -22,7 +22,7 @@ class News extends Model
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function getNews($data=[],$from,$size){
+    public function getNews($data=[],$from,$size=5){
         $data['status'] = ['eq',1];
         $order = ['id'=>'desc'];
         $result = $this->where($data)

@@ -29,10 +29,11 @@ class News extends Base
         if(!empty($data['title'])){
             $whereDate['title'] = ['like','%'.$data['title'].'%'];
         }
+        //获取分页信息
+        $this ->getPageAndSize($data);
         $news = model('news')->getNews($whereDate,$this -> from,$this -> size);
 //        halt($news);exit;
-        $this ->getPageAndSize($data);
-        $total = model('news')->getNewsTotal();
+        $total = model('news')->getNewsTotal($whereDate);
         $pageTotal = ceil($total/$this->size);
         return $this -> fetch('',
             [
@@ -40,7 +41,11 @@ class News extends Base
                 'cats'=>config('cat.lists'),
                 'curr'=>$this -> page,
                 'pageTotal'=>$pageTotal,
-                'total'=>$total
+                'total'=>$total,
+                'start_time' => empty($data['start_time']) ? '' : $data['start_time'],
+                'end_time' => empty($data['end_time']) ? '' : $data['end_time'],
+                'title' => empty($data['title']) ? '' : $data['title'],
+                'catid' => empty($data['catid']) ? '' : $data['catid'],
             ]);
     }
     public function add(){
