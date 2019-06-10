@@ -14,6 +14,7 @@ use think\Config;
 class News extends Base
 {
     public function index(){
+        $this -> model = "news";
         $data = input();
         $query = http_build_query($data);
 //        halt($data);

@@ -5,18 +5,15 @@
  * Date: 2019/2/28
  * Time: 17:42
  */
-
 namespace app\admin\controller;
-
-
 use phpDocumentor\Reflection\DocBlock\Tags\Example;
 use think\Controller;
-
 class Base extends Controller
 {
     public $page;//当前页
     public $size;//一页显示多少条
     public $from=0;
+    public $model='';
     public function _initialize()
     {
         $isLogin = $this -> isLogin();
@@ -38,6 +35,7 @@ class Base extends Controller
     }
 
     public function delete($id=0){
+
         if(!intval($id)){
             return $this -> result('',0,'ID不合法');
         }
@@ -47,5 +45,9 @@ class Base extends Controller
         }catch (\Exception $e){
            return $this -> result('',0,$e->getMessage());
         }
+        if ($res){
+            return $this -> result(['jump_url'=>$_SERVER['HTTP_REFERER']],1,'ok');
+        }
+        return $this -> result('',0,'删除失败');
     }
 }
