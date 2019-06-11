@@ -34,6 +34,10 @@ class Base extends Controller
         $this -> from = ($this -> page-1) * $this -> size;
     }
 
+    /**
+     *
+     * @param int $id
+     */
     public function delete($id=0){
 
         if(!intval($id)){
@@ -49,5 +53,27 @@ class Base extends Controller
             return $this -> result(['jump_url'=>$_SERVER['HTTP_REFERER']],1,'ok');
         }
         return $this -> result('',0,'删除失败');
+    }
+
+    /**
+     *改变状态
+     */
+    public function status(){
+        $data = input('param.');
+
+        $validate = validate('ChangeStatus');
+        if(!$validate -> check($data)){
+            return $this -> result('',0,$validate->getError());
+        }
+        $model = $this -> model ? $this -> model : request()->controller();
+        try{
+            $res = model($model) -> save(['status'=>$data['status']],['id'=>$data['id']]);
+        }catch (\Exception $e){
+            return $this -> result('',0,$e->getMessage());
+        }
+        if($res){
+            return $this -> result(['jump_url'=>$_SERVER['HTTP_REFERER']],1,'ok');
+        }
+        return $this -> result('',0,'fail');
     }
 }

@@ -24,11 +24,11 @@ function isYesNo($str){
 function status($id,$status){
     $controller = request()->controller();
     $sta = $status == 1 ? 0 : 1;
-    $url = url($controller.'/status',['id'=>$id,$status]);
+    $url = url($controller.'/status',['id'=>$id,'status'=>$sta]);
     if($status == 1){
-        $str = "<a href='javascript::' status_url='".$url."' onclick='app_status(this)' title='修改状态'><span class='label label-success radius'>正常</span></a>";
+        $str = "<a href='javascript::' status-url='".$url."' onclick='app_status(this)' title='修改状态'><span class='label label-success radius'>正常</span></a>";
     }elseif ($status == 0){
-        $str = "<a href='javascript::' status_url='".$url."' onclick='app_status(this)' title='修改状态'><span class='label label-danger radius'>待审</span></a>";
+        $str = "<a href='javascript::' status-url='".$url."' onclick='app_status(this)' title='修改状态'><span class='label label-danger radius'>待审</span></a>";
     }
     return $str;
 }

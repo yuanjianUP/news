@@ -37,6 +37,9 @@ class News extends Base
 //        halt($news);exit;
         $total = model('news')->getNewsTotal($whereDate);
         $pageTotal = ceil($total/$this->size);
+
+
+
         return $this -> fetch('',
             [
                 'news'=>$news,

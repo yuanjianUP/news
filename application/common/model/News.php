@@ -23,7 +23,7 @@ class News extends Model
      * @throws \think\exception\DbException
      */
     public function getNews($data=[],$from,$size=5){
-        $data['status'] = ['eq',1];
+        $data['status'] = ['neq',-1];
         $order = ['id'=>'desc'];
         $result = $this->where($data)
             ->order($order)
