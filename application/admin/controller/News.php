@@ -58,6 +58,7 @@ class News extends Base
         if(request()->isPost()){
             $data = input('post.');
             $res = model('news')->add($data);
+//            dump(model('news')->getLastSql());exit;
             if($res){
                 return $this->result(['jump_url'=>url('news/index')],1,'ok');
             }

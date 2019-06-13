@@ -24,9 +24,9 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章类型：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="cateid" class="select">
+				<select name="catid" class="select">
 					{volist name="cat" id="v" key="k"}
-						<option value="{$k}+1">{$v}</option>
+						<option value="{$k}">{$v}</option>
 					{/volist}
 				</select>
 				</span> </div>
@@ -85,7 +85,7 @@
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button onClick="submit_form(form);" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -109,6 +109,8 @@
 {load href="__STATIC__/admin/js/image.js" /}
 <script type="text/javascript">
 
+$(function () {
+	
 
         $('.skin-minimal input').iCheck({
             checkboxClass: 'icheckbox-blue',
@@ -143,10 +145,9 @@
                 singwaapp_save(form);// 需要小伙伴自定义一个singwaapp_save方法 用来处理抛送请求的哦
             }
         });
-
         var ue = UE.getEditor('editor');
 
-    });
+})
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

@@ -32,3 +32,18 @@ function status($id,$status){
     }
     return $str;
 }
+
+/**
+ * @param $status 业务状态码
+ * @param $message 信息提示
+ * @param array $data 数据
+ * @param int $httpCode http状态码
+ */
+function show($status,$message,$data=[],$httpCode=200){
+    $data = [
+        'status'=>$status,
+        'message'=>$message,
+        'data'=>$data
+    ];
+    return json($data,$httpCode);
+}
