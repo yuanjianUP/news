@@ -8,14 +8,16 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
+use think\Route;
+//return [
+////    '__pattern__' => [
+////        'name' => '\w+',
+////    ],
+////    '[hello]'     => [
+////        ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
+////        ':name' => ['index/hello', ['method' => 'post']],
+////    ],
+//];
+Route::get('test', 'api/test/test');
+Route::get('api/:ver/cat','api/:ver.cat/read');
 
-return [
-    '__pattern__' => [
-        'name' => '\w+',
-    ],
-    '[hello]'     => [
-        ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
-        ':name' => ['index/hello', ['method' => 'post']],
-    ],
-
-];
